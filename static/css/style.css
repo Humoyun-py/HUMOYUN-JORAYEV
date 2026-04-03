@@ -612,7 +612,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 ══════════════════════════════════════════════ */
 .skills-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 48px;
 }
 
@@ -982,6 +982,19 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 500;
   color: var(--blue-dark);
   margin-top: 3px;
+}
+
+.empty-state {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.empty-state-card {
+  background: var(--white);
+  border: 1px dashed var(--blue-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  color: var(--text-muted);
 }
 
 /* ══════════════════════════════════════════════
