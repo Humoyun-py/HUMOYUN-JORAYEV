@@ -5,11 +5,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from config.views import home, robots_txt, sitemap_xml
+from config.views import google_site_verification, home, robots_txt, sitemap_xml
 
 
 urlpatterns = [
     path("", home, name="home"),
+    path(
+        "google455ae077a0eb0277.html",
+        google_site_verification,
+        name="google-site-verification",
+    ),
     path("robots.txt", robots_txt, name="robots-txt"),
     path("sitemap.xml", sitemap_xml, name="sitemap-xml"),
     path("admin/", admin.site.urls),

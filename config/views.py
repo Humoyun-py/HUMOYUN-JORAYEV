@@ -29,6 +29,12 @@ DEFAULT_PROFILE = {
     "phone": "+998 20 000 88 39",
 }
 
+GOOGLE_VERIFICATION_FILE = "google455ae077a0eb0277.html"
+GOOGLE_VERIFICATION_META = "google455ae077a0eb0277"
+GOOGLE_VERIFICATION_CONTENT = (
+    "google-site-verification: google455ae077a0eb0277.html"
+)
+
 
 def _site_url(request) -> str:
     configured = os.getenv("SITE_URL", "").strip()
@@ -133,12 +139,23 @@ def home(request):
             "seo_site_name": f"{profile['full_name']} Portfolio",
             "seo_locale": "uz_UZ",
             "seo_type": "website",
-            "google_site_verification": os.getenv("GOOGLE_SITE_VERIFICATION", "").strip(),
+            "google_site_verification": os.getenv(
+                "GOOGLE_SITE_VERIFICATION", GOOGLE_VERIFICATION_META
+            ).strip(),
             "structured_data_json": json.dumps(structured_data, ensure_ascii=False),
             "seo_project_titles": project_titles,
             "seo_skill_names": skill_names,
             "seo_profile": profile,
         },
+    )
+
+
+def google_site_verification(request):
+    """Serve the exact HTML verification file Google expects."""
+
+    return HttpResponse(
+        GOOGLE_VERIFICATION_CONTENT,
+        content_type="text/html; charset=utf-8",
     )
 
 
