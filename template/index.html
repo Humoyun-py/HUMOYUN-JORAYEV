@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humoyun Jo'rayev — Backend Dasturchi</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet" />
+
+  <!-- html2pdf — PDF yuklab olish uchun -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATSIYA PANELI
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">HJ<span class="dot">.</span></span>
+      <ul class="nav-links">
+        <li><a href="#about">Haqimda</a></li>
+        <li><a href="#skills">Ko'nikmalar</a></li>
+        <li><a href="#projects">Loyihalar</a></li>
+        <li><a href="#education">Ta'lim</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+      <!-- CV yuklab olish tugmasi (desktop) -->
+      <button class="btn-download nav-dl" id="navDownloadBtn" aria-label="CV ni PDF formatda yuklab olish">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        CV Yuklab olish
+      </button>
+      <!-- Mobil menyu tugmasi -->
+      <button class="hamburger" id="hamburger" aria-label="Menyuni ochish">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       ASOSIY KONTENT (PDF eksport uchun o'ralgan)
+  ═══════════════════════════════════════════ -->
+  <main id="cv-content">
+
+    <!-- ── BOSH SAHIFA (HERO) ── -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+      <div class="container hero-inner">
+        <!-- Chap: matn qismi -->
+        <div class="hero-text reveal">
+          <p class="hero-greeting">Salom, men</p>
+          <h1 class="hero-name">Humoyun<br /><span>Jo'rayev</span></h1>
+          <p class="hero-title">
+            <span class="badge">Backend Dasturchi</span>
+            <span class="badge">Python</span>
+            <span class="badge">Django</span>
+          </p>
+          <p class="hero-desc">
+            Men mustahkam va kengaytiriladigan backend tizimlarini yarataman hamda
+            murakkab muammolarni sodda va elegant yechimga aylantirishni yaxshi ko'raman.
+            Hozirda Django REST Framework va AI asosidagi veb ilovalar bo'yicha
+            bilimlarimni chuqurlashtirmoqdaman.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">Loyihalarni Ko'rish</a>
+            <a href="#contact" class="btn-ghost">Bog'lanish</a>
+          </div>
+        </div>
+        <!-- O'ng: avatar placeholder -->
+        <div class="hero-avatar reveal reveal-delay">
+          <div class="avatar-ring">
+            <div class="avatar-spin" aria-hidden="true"></div>
+            <div class="avatar-inner">
+              <img src="/static/image/image.png" alt="Hero avatar" class="avatar-image" />
+            </div>
+          </div>
+          <!-- Suzuvchi teglar -->
+          <div class="float-tag tag-1">🐍 Python</div>
+          <div class="float-tag tag-2">⚙️ Django</div>
+          <div class="float-tag tag-3">🗄️ PostgreSQL</div>
+        </div>
+      </div>
+      <!-- Pastga o'tish belgisi -->
+      <a href="#about" class="scroll-down" aria-label="Pastga o'tish">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ── MEN HAQIMDA ── -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">01. Haqimda</span>
+          <h2>Men Haqimda</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Men <strong>Toshkent, O'zbekiston</strong>da istiqomat qiluvchi ishtiyoqli
+              backend dasturchisiman. Hozirda Mars IT School'da tahsil olmoqdaman.
+              Texnologiya sohasidagi sayohatim tizimlar qanday ishlashiga bo'lgan
+              chuqur qiziqishdan boshlanib — Django bilan REST API yaratishdan tortib,
+              aiogram yordamida aqlli Telegram botlar qurishgacha davom etmoqda.
+            </p>
+            <p>
+              Mening maqsadim — ishonchli va yuqori unumli tizimlarni loyihalashga
+              qodir to'liq dasturiy muhandisga aylanish. Men tez o'rganuvchi bo'lib,
+              jamoa muhitida samarali ishlayman va murakkab muammolarga mard yondashaman.
+            </p>
+            <div class="about-stats">
+              <div class="stat">
+                <span class="stat-num">3+</span>
+                <span class="stat-label">Loyiha Yaratildi</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num">5+</span>
+                <span class="stat-label">Texnologiyalar</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num">1</span>
+                <span class="stat-label">Yil Dasturlash</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-traits reveal reveal-delay">
+            <div class="trait-card">
+              <div class="trait-icon">⚡</div>
+              <h4>Tez O'rganuvchi</h4>
+              <p>Yangi texnologiyalarni tezda o'zlashtiraman va ularni real loyihalarga samarali qo'llayman.</p>
+            </div>
+            <div class="trait-card">
+              <div class="trait-icon">🤝</div>
+              <h4>Jamoa Ishtirokchisi</h4>
+              <p>Hamkorlik ruhiyati, aniq muloqot, doimo umumiy maqsadlarga hissa qo'shishga tayyor.</p>
+            </div>
+            <div class="trait-card">
+              <div class="trait-icon">🧩</div>
+              <h4>Muammolarni Hal Etuvchi</h4>
+              <p>Murakkab muammolarni boshqariladigan va elegant yechimga bo'lib chiqaman.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── KO'NIKMALAR ── -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">02. Ko'nikmalar</span>
+          <h2>Texnik Ko'nikmalar</h2>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-group reveal">
+            <h3 class="skill-group-title">Dasturlash Tillari</h3>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🐍</span> Python</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="85"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🌐</span> HTML va CSS</span>
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="80"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">⚙️</span> JavaScript</span>
+                <span class="skill-pct">60%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="60"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-group reveal reveal-delay">
+            <h3 class="skill-group-title">Freymvork va Vositalar</h3>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🎸</span> Django / DRF</span>
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="80"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🤖</span> aiogram (Telegram Bot)</span>
+                <span class="skill-pct">75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="75"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🐘</span> PostgreSQL</span>
+                <span class="skill-pct">70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="70"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name"><span class="skill-icon">🔀</span> Git va GitHub</span>
+                <span class="skill-pct">78%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="78"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOYIHALAR ── -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">03. Loyihalar</span>
+          <h2>Mening Loyihalarim</h2>
+        </div>
+        <div class="projects-grid">
+
+          <!-- Loyiha 1 -->
+          <article class="project-card reveal">
+            <div class="project-header">
+              <div class="project-icon">🌱</div>
+              <span class="project-num">01</span>
+            </div>
+            <h3 class="project-title">EcoTrack Platform</h3>
+            <p class="project-desc">
+              Bolalar uchun ekologiyaga yo'naltirilgan ta'lim platformasi. Foydalanuvchilar
+              kundalik eko vazifalarni bajarish, viktorinalarga javob berish va faoliyatlarda
+              ishtirok etish orqali virtual tangalar yig'adilar.
+            </p>
+            <ul class="project-features">
+              <li>📅 Kundalik eko vazifalar</li>
+              <li>🧠 Viktorina tizimi</li>
+              <li>🪙 Virtual tangalar va mukofotlar</li>
+              <li>🛠️ Admin panel</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">Django</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+            <a href="https://github.com/Humoyun-py/Niners-coin" target="_blank" rel="noopener" class="project-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              GitHub'da Ko'rish
+            </a>
+          </article>
+
+          <!-- Loyiha 2 -->
+          <article class="project-card reveal reveal-delay">
+            <div class="project-header">
+              <div class="project-icon">🎬</div>
+              <span class="project-num">02</span>
+            </div>
+            <h3 class="project-title">Telegram Film Boti</h3>
+            <p class="project-desc">
+              Foydalanuvchilarga maxsus kod orqali filmlarni qidirib topish imkonini
+              beruvchi Telegram boti. aiogram freymvorki, buyruqlarni boshqarish va
+              inline menyular bilan qurilgan.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">aiogram</span>
+            </div>
+            <a href="https://github.com/Humoyun-py/kino-uzbot" target="_blank" rel="noopener" class="project-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              GitHub'da Ko'rish
+            </a>
+          </article>
+
+          <!-- Loyiha 3 -->
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-header">
+              <div class="project-icon">🤖</div>
+              <span class="project-num">03</span>
+            </div>
+            <h3 class="project-title">AI Video Tahlilchi</h3>
+            <p class="project-desc">
+              Yuklangan videolarni tahlil qiluvchi, tushunchalar va xulosalar chiqaruvchi
+              AI asosidagi platforma. Django REST backend, React frontend va
+              PostgreSQL ma'lumotlar qatlami bilan qurilgan.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Django</span>
+              <span class="tag">React</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+            <a href="https://github.com/Humoyun-py/Vedio-ai" target="_blank" rel="noopener" class="project-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              GitHub'da Ko'rish
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TA'LIM VA TILLAR ── -->
+    <section class="section edu-section" id="education">
+      <div class="container">
+        <div class="edu-lang-grid">
+
+          <!-- Ta'lim -->
+          <div class="reveal">
+            <div class="section-header">
+              <span class="section-label">04. Ta'lim</span>
+              <h2>Ta'lim</h2>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-body">
+                  <span class="timeline-date">2023 — Hozirgi kungacha</span>
+                  <h3 class="timeline-title">Veb Dasturlash</h3>
+                  <p class="timeline-place">🏫 Mars IT School</p>
+                  <p class="timeline-desc">
+                    Frontend va backend texnologiyalar, ma'lumotlar bazasi, versiyalarni
+                    boshqarish va real loyihalar yaratishni qamrab oluvchi keng qamrovli dastur.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tillar va Yumshoq Ko'nikmalar -->
+          <div class="reveal reveal-delay">
+            <div class="section-header">
+              <span class="section-label">05. Qo'shimcha</span>
+              <h2>Tillar va Yumshoq Ko'nikmalar</h2>
+            </div>
+            <div class="lang-list">
+              <div class="lang-item">
+                <span class="lang-flag">🇺🇿</span>
+                <div class="lang-info">
+                  <span class="lang-name">O'zbek tili</span>
+                  <span class="lang-level">Ona tili</span>
+                </div>
+                <div class="lang-dots">
+                  <span class="dot active"></span>
+                  <span class="dot active"></span>
+                  <span class="dot active"></span>
+                  <span class="dot active"></span>
+                  <span class="dot active"></span>
+                </div>
+              </div>
+            </div>
+            <div class="soft-skills">
+              <div class="soft-skill"><span>⚡</span> Tez O'rganuvchi</div>
+              <div class="soft-skill"><span>🤝</span> Jamoada Ishlash</div>
+              <div class="soft-skill"><span>🧩</span> Muammolarni Hal Etish</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ALOQA ── -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header reveal" style="text-align:center;">
+          <span class="section-label">06. Aloqa</span>
+          <h2>Bog'lanish</h2>
+          <p class="contact-sub">Loyihangiz bormi yoki hamkorlik qilmoqchimisiz? Xabar yuboring!</p>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="tel:+998200008839">
+            <div class="contact-icon">📞</div>
+            <div class="contact-info">
+              <span class="contact-label">Telefon</span>
+              <span class="contact-value">+998 20 000 88 39</span>
+            </div>
+          </a>
+          <a class="contact-card reveal reveal-delay" href="mailto:freif56@gmail.com">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-info">
+              <span class="contact-label">Elektron pochta</span>
+              <span class="contact-value">freif56@gmail.com</span>
+            </div>
+          </a>
+          <a class="contact-card reveal reveal-delay-2" href="https://t.me/humoyun_coder" target="_blank"
+            rel="noopener">
+            <div class="contact-icon">Telegram</div>
+            <div class="contact-info">
+              <span class="contact-label">Telegram</span>
+              <span class="contact-value">@humoyun_coder</span>
+            </div>
+          </a>
+          <div class="contact-card reveal reveal-delay-2">
+            <div class="contact-icon">📍</div>
+            <div class="contact-info">
+              <span class="contact-label">Manzil</span>
+              <span class="contact-value">Toshkent, O'zbekiston</span>
+            </div>
+          </div>
+          <a class="contact-card reveal" href="https://github.com/Humoyun-py" target="_blank" rel="noopener">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </div>
+            <div class="contact-info">
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">Humoyun-py</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Asosiy CV yuklab olish tugmasi -->
+        <div class="download-wrap reveal">
+          <button class="btn-download btn-download-main" id="mainDownloadBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            CV Yuklab Olish (PDF)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- #cv-content tugadi -->
+
+  <!-- ═══════════════════════════════════════════
+       PASTKI QISM (FOOTER)
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© 2024 Humoyun Jo'rayev. Toshkentda ❤️ bilan yaratildi.</p>
+      <a href="https://github.com/Humoyun-py" target="_blank" rel="noopener" class="footer-github">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </footer>
+
+  <!-- PDF yuklash animatsiyasi -->
+  <div class="pdf-overlay" id="pdfOverlay">
+    <div class="pdf-spinner">
+      <div class="spinner-ring"></div>
+      <p>PDF tayyorlanmoqda…</p>
+    </div>
+  </div>
+
+  <script src="/static/js/script.js"></script>
+</body>
+
+</html>
