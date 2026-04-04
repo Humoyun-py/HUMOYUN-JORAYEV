@@ -1,6 +1,7 @@
 from io import BytesIO
 import textwrap
 
+from django.db.utils import OperationalError
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -17,14 +18,34 @@ from apps.skills.models import Skill
 from apps.users.models import ExtraInfo, UserProfile
 from apps.users.serializers import ExtraInfoSerializer, UserProfileSerializer
 
+DEFAULT_PROFILE = {
+    "full_name": "Humoyun Jo'rayev",
+    "title": "Python Backend Developer",
+    "bio": (
+        "Humoyun Jo'rayev Toshkentdagi Python backend developer bo'lib, "
+        "Django, Django REST Framework, REST API, Telegram bot, SQLite va "
+        "PostgreSQL bilan ishlaydi."
+    ),
+    "location": "Toshkent, O'zbekiston",
+    "github": "https://github.com/Humoyun-py",
+    "telegram": "https://t.me/humoyun_coder",
+    "email": "freif56@gmail.com",
+    "phone": "+998 20 000 88 39",
+    "profile_image": None,
+}
+
 
 class UserProfileAPIView(APIView):
     parser_classes = [JSONParser, MultiPartParser, FormParser]
 
     def get(self, request):
-        profile = UserProfile.objects.first()
+        try:
+            profile = UserProfile.objects.first()
+        except OperationalError:
+            return Response(DEFAULT_PROFILE, status=status.HTTP_200_OK)
+
         if not profile:
-            return Response({"detail": "Profile has not been created yet."}, status=status.HTTP_404_NOT_FOUND)
+            return Response(DEFAULT_PROFILE, status=status.HTTP_200_OK)
         return Response(UserProfileSerializer(profile, context={"request": request}).data)
 
     def put(self, request):

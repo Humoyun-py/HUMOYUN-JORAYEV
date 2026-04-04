@@ -19,6 +19,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Phone number looks too short.")
         return cleaned
 
+    def validate_telegram(self, value: str) -> str:
+        return value.strip()
+
 
 class ExtraInfoSerializer(serializers.ModelSerializer):
     class Meta:

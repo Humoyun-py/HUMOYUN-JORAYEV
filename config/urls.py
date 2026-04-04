@@ -5,11 +5,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from config.views import google_site_verification, home, robots_txt, sitemap_xml
+from config.views import favicon, google_site_verification, home, robots_txt, sitemap_xml
 
 
 urlpatterns = [
     path("", home, name="home"),
+    path("favicon.ico", favicon, name="favicon"),
     path(
         "google455ae077a0eb0277.html",
         google_site_verification,

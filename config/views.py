@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import json
 import os
+from pathlib import Path
 
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.conf import settings
+from django.db.utils import OperationalError
+from django.http import FileResponse, Http404, HttpResponse
+from django.shortcuts import render
 from django.templatetags.static import static
 from django.utils import timezone
 
@@ -25,6 +28,7 @@ DEFAULT_PROFILE = {
     ),
     "location": "Toshkent, O'zbekiston",
     "github": "https://github.com/Humoyun-py",
+    "telegram": "https://t.me/humoyun_coder",
     "email": "freif56@gmail.com",
     "phone": "+998 20 000 88 39",
 }
@@ -44,7 +48,11 @@ def _site_url(request) -> str:
 
 
 def _profile_payload() -> dict[str, str]:
-    profile = UserProfile.objects.first()
+    try:
+        profile = UserProfile.objects.first()
+    except OperationalError:
+        return DEFAULT_PROFILE.copy()
+
     if not profile:
         return DEFAULT_PROFILE.copy()
 
@@ -54,6 +62,7 @@ def _profile_payload() -> dict[str, str]:
         "bio": profile.bio or DEFAULT_PROFILE["bio"],
         "location": profile.location or DEFAULT_PROFILE["location"],
         "github": profile.github or DEFAULT_PROFILE["github"],
+        "telegram": profile.telegram or DEFAULT_PROFILE["telegram"],
         "email": profile.email or DEFAULT_PROFILE["email"],
         "phone": profile.phone or DEFAULT_PROFILE["phone"],
     }
@@ -160,9 +169,15 @@ def google_site_verification(request):
 
 
 def favicon(request):
-    """Serve favicon from the static image directory."""
+    """Serve favicon directly so browsers don't fall back to the default globe."""
 
-    return redirect(static("image/favicon.ico"), permanent=True)
+    favicon_path = Path(settings.BASE_DIR) / "static" / "image" / "favicon.ico"
+    if not favicon_path.exists():
+        raise Http404("favicon.ico not found")
+    return FileResponse(
+        favicon_path.open("rb"),
+        content_type="image/x-icon",
+    )
 
 
 def robots_txt(request):

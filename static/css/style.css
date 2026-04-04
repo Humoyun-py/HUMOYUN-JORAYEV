@@ -1041,11 +1041,12 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   align-items: center;
   gap: 20px;
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius);
+  border: 1px solid rgba(147,197,253,.3);
+  border-radius: 20px;
   padding: 24px 28px;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  box-shadow: var(--shadow-sm);
 }
 
 .contact-card:hover {
@@ -1055,15 +1056,21 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .contact-icon {
-  font-size: 28px;
-  width: 52px;
-  height: 52px;
-  background: var(--blue-pale);
-  border-radius: var(--radius);
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(147,197,253,.28));
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--blue-mid);
+}
+
+.contact-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 .contact-info {
@@ -1084,6 +1091,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 500;
   color: var(--blue-dark);
   margin-top: 3px;
+  line-height: 1.5;
 }
 
 .empty-state {

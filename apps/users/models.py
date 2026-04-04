@@ -10,6 +10,7 @@ class UserProfile(models.Model):
     email = models.EmailField()
     location = models.CharField(max_length=255)
     github = models.URLField()
+    telegram = models.URLField(blank=True, default="")
     profile_image = models.ImageField(upload_to="profile/", blank=True, null=True)
 
     class Meta:
