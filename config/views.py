@@ -6,7 +6,7 @@ import json
 import os
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.templatetags.static import static
 from django.utils import timezone
 
@@ -157,6 +157,12 @@ def google_site_verification(request):
         GOOGLE_VERIFICATION_CONTENT,
         content_type="text/html; charset=utf-8",
     )
+
+
+def favicon(request):
+    """Serve favicon from the static image directory."""
+
+    return redirect(static("image/favicon.ico"), permanent=True)
 
 
 def robots_txt(request):

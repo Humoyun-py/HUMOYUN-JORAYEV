@@ -108,6 +108,13 @@ function normalizeTechStack(techStack) {
   return [];
 }
 
+function getProjectMonogram(title = "") {
+  const parts = String(title).trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "PR";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0] || ""}${parts[1][0] || ""}`.toUpperCase();
+}
+
 function createProjectMarkup(project, index) {
   const tags = normalizeTechStack(project.tech_stack)
     .map((item) => `<span class="tag">${item}</span>`)
@@ -116,13 +123,22 @@ function createProjectMarkup(project, index) {
   return `
     <article class="project-card reveal ${index === 1 ? "reveal-delay" : index > 1 ? "reveal-delay-2" : ""}">
       <div class="project-header">
-        <div class="project-icon">P</div>
-        <span class="project-num">${String(index + 1).padStart(2, "0")}</span>
+        <div class="project-icon">${getProjectMonogram(project.title)}</div>
+        <div class="project-meta">
+          <span class="project-kicker">Loyiha</span>
+          <span class="project-num">${String(index + 1).padStart(2, "0")}</span>
+        </div>
       </div>
       <h3 class="project-title">${project.title}</h3>
       <p class="project-desc">${project.description}</p>
-      <div class="project-tags">${tags || '<span class="tag">Project</span>'}</div>
-      <a href="${project.github_link}" target="_blank" rel="noopener" class="project-link">GitHub'da Ko'rish</a>
+      <div class="project-stack">
+        <span class="project-stack-label">Texnologiyalar</span>
+        <div class="project-tags">${tags || '<span class="tag">Portfolio</span>'}</div>
+      </div>
+      <a href="${project.github_link}" target="_blank" rel="noopener" class="project-link">
+        GitHub'da Ko'rish
+        <span aria-hidden="true">↗</span>
+      </a>
     </article>
   `;
 }
@@ -160,15 +176,26 @@ function createLanguageMarkup(item) {
 function createExtraCard(item) {
   return `
     <div class="trait-card">
-      <div class="trait-icon">+</div>
-      <h4>Qo'shimcha</h4>
+      <div class="trait-top">
+        <div class="trait-icon">+</div>
+        <span class="trait-kicker">Qo'shimcha ma'lumot</span>
+      </div>
+      <h4>Kuchli tomonim</h4>
       <p>${item.text}</p>
     </div>
   `;
 }
 
 function createSoftSkill(item) {
-  return `<div class="soft-skill"><span>*</span> ${item.text}</div>`;
+  return `
+    <div class="soft-skill-card">
+      <div class="soft-skill-icon">+</div>
+      <div class="soft-skill-content">
+        <h4>Qo'shimcha</h4>
+        <p>${item.text}</p>
+      </div>
+    </div>
+  `;
 }
 
 function createContactCard(label, value, href = "", delayClass = "") {
@@ -306,7 +333,15 @@ function renderLanguagesAndExtra() {
   if (softSkills) {
     softSkills.innerHTML = state.extra.length
       ? state.extra.map(createSoftSkill).join("")
-      : `<div class="soft-skill"><span>*</span> Qo'shimcha ma'lumot kutilmoqda</div>`;
+      : `
+        <div class="soft-skill-card">
+          <div class="soft-skill-icon">i</div>
+          <div class="soft-skill-content">
+            <h4>Qo'shimcha</h4>
+            <p>Qo'shimcha ma'lumot kiritilganda shu yerda chiroyli ko'rinishda chiqadi.</p>
+          </div>
+        </div>
+      `;
   }
 
   if (aboutTraits) {
@@ -314,8 +349,11 @@ function renderLanguagesAndExtra() {
       ? state.extra.map(createExtraCard).join("")
       : `
         <div class="trait-card">
-          <div class="trait-icon">i</div>
-          <h4>Qo'shimcha ma'lumot</h4>
+          <div class="trait-top">
+            <div class="trait-icon">i</div>
+            <span class="trait-kicker">Qo'shimcha ma'lumot</span>
+          </div>
+          <h4>Ma'lumot kutilmoqda</h4>
           <p>Admin panel orqali extra info qo'shsangiz bu yerda ko'rinadi.</p>
         </div>
       `;
